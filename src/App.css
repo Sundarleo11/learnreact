@@ -83,7 +83,7 @@
     color: #666;
 }
 
-/* Styles for loading, error, and no data messages */
+/* Add reusable styles for loading, error, and no data messages */
 .message {
     text-align: center;
     font-size: 18px;
@@ -100,6 +100,16 @@
 
 .message.no-data {
     color: #555;
+}
+
+/* Add this to define a reusable button style */
+.btn-primary {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 
