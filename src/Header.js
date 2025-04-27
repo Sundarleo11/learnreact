@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="App-header">
-      <Link to="/Home">Home</Link>
-      <Link to="/Contact">Contact</Link>
-      <Link to="/employee">employee</Link>
-      <Link to="/About">About</Link>
-    </div>
+    <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: '#f8f9fa', width: '100%' }}>
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/Home">Home</Link>
+        <Link className="nav-link" to="/Contact">Contact</Link>
+        <Link className="nav-link" to="/employee">Employee</Link>
+        <Link className="nav-link" to="/About">About</Link>
+      </div>
+    </nav>
   );
 };
 

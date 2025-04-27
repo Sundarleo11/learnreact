@@ -1,4 +1,5 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./Header";
 import useFetch from "./useFetch";
 import { Routes, Route } from "react-router-dom";
@@ -19,29 +20,27 @@ function App() {
   };
 
   return (
-    <>
-      <div className="App">
-        <Header></Header>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/Contact" element={<Contact />} />
-          <Route path="/About" element={<About />} />
-          <Route
-            path="/employee"
-            element={
-              <StatusDisplay
-                error={error}
-                isLoading={isLoading}
-                employees={employees}
-                FunctionDelete={FunctionDelete}
-              />
-            }
-          />
-          <Route path="/employeeDetails/:id" element={<EmployeeDetails />} />
-        </Routes>
-      </div>
-    </>
+    <div className="container">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/Contact" element={<Contact />} />
+        <Route path="/About" element={<About />} />
+        <Route
+          path="/employee"
+          element={
+            <StatusDisplay
+              error={error}
+              isLoading={isLoading}
+              employees={employees}
+              FunctionDelete={FunctionDelete}
+            />
+          }
+        />
+        <Route path="/employeeDetails/:id" element={<EmployeeDetails />} />
+      </Routes>
+    </div>
   );
 }
 
