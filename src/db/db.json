@@ -1,0 +1,79 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "department": "Engineering",
+      "salary": "$100,000"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "department": "Marketing",
+      "salary": "$80,000"
+    },
+    {
+      "id": "3",
+      "name": "Alice Johnson",
+      "department": "Finance",
+      "salary": "$90,000"
+    },
+    {
+      "id": "4",
+      "name": "Bob Brown",
+      "department": "Human Resources",
+      "salary": "$70,000"
+    },
+    {
+      "id": "5",
+      "name": "Charlie White",
+      "department": "IT",
+      "salary": "$110,000"
+    },
+    {
+      "id": "6",
+      "name": "kumar",
+      "department": "Engineering",
+      "salary": "$100,000"
+    }
+  ],
+  "departments": [
+    {
+      "id": "1",
+      "name": "Engineering"
+    },
+    {
+      "id": "2",
+      "name": "Marketing"
+    },
+    {
+      "id": "3",
+      "name": "Finance"
+    },
+    {
+      "id": "4",
+      "name": "Human Resources"
+    },
+    {
+      "id": "5",
+      "name": "IT"
+    }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "name": "Project Alpha",
+      "department": "Engineering"
+    },
+    {
+      "id": "2",
+      "name": "Project Beta",
+      "department": "Marketing"
+    },
+    {
+      "id": "3",
+      "name": "Project Gamma",
+      "department": "Finance"
+    }
+  ]
+}
