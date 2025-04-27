@@ -35,6 +35,18 @@
       "name": "kumar",
       "department": "Engineering",
       "salary": "$100,000"
+    },
+    {
+      "id": "7",
+      "name": "Emily Davis",
+      "department": "Engineering",
+      "salary": "$95,000"
+    },
+    {
+      "id": "8",
+      "name": "Michael Scott",
+      "department": "Sales",
+      "salary": "$85,000"
     }
   ],
   "departments": [
@@ -57,6 +69,10 @@
     {
       "id": "5",
       "name": "IT"
+    },
+    {
+      "id": "6",
+      "name": "Sales"
     }
   ],
   "projects": [
@@ -74,6 +90,16 @@
       "id": "3",
       "name": "Project Gamma",
       "department": "Finance"
+    },
+    {
+      "id": "4",
+      "name": "Project Delta",
+      "department": "Sales"
+    },
+    {
+      "id": "5",
+      "name": "Project Epsilon",
+      "department": "Engineering"
     }
   ]
 }
