@@ -8,6 +8,7 @@ import Contact from "./Contact";
 import About from "./About";
 import StatusDisplay from "./StatusDisplay";
 import EmployeeDetails from "./EmployeeDetails";
+import AddEmployee from "./AddEmployee";
 
 function App() {
   const { employees, isLoading, error, setEmployees } = useFetch(
@@ -39,6 +40,8 @@ function App() {
           }
         />
         <Route path="/employeeDetails/:id" element={<EmployeeDetails />} />
+        <Route path="/addEmployee" element={<AddEmployee setEmployees={setEmployees} />} />
+        <Route path="/editEmployee/:id" element={<AddEmployee />} />
       </Routes>
     </div>
   );
