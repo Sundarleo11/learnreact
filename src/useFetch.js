@@ -8,7 +8,7 @@ const useFetch = (url) => {
   useEffect(() => {
     const abortCont = new AbortController();
     const signal = abortCont.signal;
-    fetch(url,{signal:signal})
+    fetch(url, { signal: signal })
       .then((response) => {
         if (!response.ok) {
           throw Error("Network response was not ok");
@@ -22,16 +22,19 @@ const useFetch = (url) => {
         }, 2000);
       })
       .catch((res) => {
-        setError(res.message);
-        setIsLoading(false);
+        if (res.name === "AbortError") {
+          console.log("Fetch aborted");
+        } else {
+          setError(res.message);
+          setIsLoading(false);
+        }
       });
 
-      return () => {
-        abortCont.abort(); // Cleanup function to abort the fetch request if the component unmounts
-      };
+    return () => {
+      abortCont.abort(); // Cleanup function to abort the fetch request if the component unmounts
+    };
   }, [url]);
   return { employees, isLoading, error, setEmployees };
 };
-
 
 export default useFetch;
