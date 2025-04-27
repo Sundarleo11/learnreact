@@ -6,15 +6,13 @@ const useFetch = (url) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("useEffect is loaded");
-
-    fetch(url)
+    const abortCont = new AbortController();
+    const signal = abortCont.signal;
+    fetch(url,{signal:signal})
       .then((response) => {
-        console.log("response", response);
         if (!response.ok) {
           throw Error("Network response was not ok");
         }
-        console.log("response", response);
         return response.json();
       })
       .then((data) => {
@@ -27,6 +25,10 @@ const useFetch = (url) => {
         setError(res.message);
         setIsLoading(false);
       });
+
+      return () => {
+        abortCont.abort(); // Cleanup function to abort the fetch request if the component unmounts
+      };
   }, [url]);
   return { employees, isLoading, error, setEmployees };
 };
