@@ -6,6 +6,12 @@ const useFetch = (url) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!url) {
+      setIsLoading(false);
+      setError("No URL provided");
+      return; // Ensure no cleanup function is returned when URL is not provided
+    }
+
     const abortCont = new AbortController();
     const signal = abortCont.signal;
     fetch(url, { signal: signal })
@@ -33,7 +39,7 @@ const useFetch = (url) => {
     return () => {
       abortCont.abort(); // Cleanup function to abort the fetch request if the component unmounts
     };
-  }, [url]);
+  }, [url]); // Removed isLoading from dependencies to avoid unnecessary re-renders
   return { employees, isLoading, error, setEmployees };
 };
 

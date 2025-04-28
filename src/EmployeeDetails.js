@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import useFetch from "./useFetch";
+import useFetch from "./useFetch"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function EmployeeDetails() {

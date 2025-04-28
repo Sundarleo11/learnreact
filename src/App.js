@@ -41,7 +41,7 @@ function App() {
         />
         <Route path="/employeeDetails/:id" element={<EmployeeDetails />} />
         <Route path="/addEmployee" element={<AddEmployee setEmployees={setEmployees} />} />
-        <Route path="/editEmployee/:id" element={<AddEmployee />} />
+        <Route path="/editEmployee/:id" element={<AddEmployee setEmployees={setEmployees} />} />
       </Routes>
     </div>
   );

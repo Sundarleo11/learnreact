@@ -1,15 +1,27 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import useFetch from "./useFetch"
 
 function AddEmployee({ setEmployees }) {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { employees} = useFetch(
+    id ? `http://localhost:3001/employees/${id}` : null
+  );
+
   const [employee, setEmployee] = useState({
     id: "",
     name: "",
     department: "",
     salary: "",
   });
+
+  useEffect(() => {
+    if (id && employees) {
+      setEmployee(employees);
+    }
+  }, [id, employees]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +45,7 @@ function AddEmployee({ setEmployees }) {
         setEmployees((prevEmployees) => [...prevEmployees, data]); // Update the state with the new employee
         navigate(-1); // Navigate back to the previous page after submission
         // Reset form after submission
-       /// setEmployee({ id: "", name: "", department: "", salary: "" });
+        /// setEmployee({ id: "", name: "", department: "", salary: "" });
       })
       .catch((error) => {
         console.error("Error adding employee:", error);
@@ -94,7 +106,7 @@ function AddEmployee({ setEmployees }) {
             Salary
           </label>
           <input
-            type="number"
+            type="text"
             className="form-control"
             id="salary"
             name="salary"
