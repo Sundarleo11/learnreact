@@ -16,8 +16,26 @@ function App() {
   );
 
   const FunctionDelete = (id) => {
-    const newEmployees = employees.filter((emp) => emp.id !== id);
-    setEmployees(newEmployees);
+    fetch(`http://localhost:3001/employees/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to delete employee");
+        }
+        return response.json();
+      })
+      .then(() => {
+        console.log("Employee Deleted");
+        const employeesList = employees.filter((emp) => emp.id !== id);
+        setEmployees(employeesList);
+      })
+      .catch((error) => {
+        console.error("Error deleting employee:", error);
+      });
   };
 
   return (
@@ -40,8 +58,14 @@ function App() {
           }
         />
         <Route path="/employeeDetails/:id" element={<EmployeeDetails />} />
-        <Route path="/addEmployee" element={<AddEmployee setEmployees={setEmployees} />} />
-        <Route path="/editEmployee/:id" element={<AddEmployee setEmployees={setEmployees} />} />
+        <Route
+          path="/addEmployee"
+          element={<AddEmployee setEmployees={setEmployees} />}
+        />
+        <Route
+          path="/editEmployee/:id"
+          element={<AddEmployee setEmployees={setEmployees} />}
+        />
       </Routes>
     </div>
   );

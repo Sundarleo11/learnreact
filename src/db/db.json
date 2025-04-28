@@ -37,58 +37,28 @@
       "salary": "$100,000"
     },
     {
-      "id": "7",
-      "name": "Emily Davis",
-      "department": "Engineering",
-      "salary": "$95,000"
-    },
-    {
       "id": "8",
       "name": "Michael Scott",
       "department": "Sales",
       "salary": "$85,000"
     },
     {
-      "id": "10",
+      "id": "7",
       "name": "sundar",
       "department": "FSE",
-      "salary": "1000"
+      "salary": "$100,000"
     },
     {
       "id": "9",
-      "name": "Siva kumar",
-      "department": "Testing",
-      "salary": "2000"
-    },
-    {
-      "id": "11",
-      "name": "test user",
-      "department": "Testing",
-      "salary": "100000"
-    },
-    {
-      "id": "12",
-      "name": "kumar",
-      "department": "Testing",
-      "salary": "12345"
-    },
-    {
-      "id": "13",
-      "name": "Vikram",
-      "department": "business ",
-      "salary": "123456"
-    },
-    {
-      "id": "10",
       "name": "sundar",
       "department": "FSE",
       "salary": "$100,000"
     },
     {
-      "id": "10",
+      "id": "9",
       "name": "sundar",
       "department": "FSE",
-      "salary": "$100,000"
+      "salary": "$200,000"
     }
   ],
   "departments": [
