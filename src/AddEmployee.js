@@ -32,8 +32,15 @@ function AddEmployee({ setEmployees }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3001/employees", {
-      method: "POST",
+
+    const url = id
+      ? `http://localhost:3001/employees/${id}` // Update existing employee
+      : "http://localhost:3001/employees"; // Create new employee
+
+    const method = id ? "PUT" : "POST";
+
+    fetch(url, {
+      method: method,
       headers: {
         "Content-Type": "application/json",
       },
@@ -41,16 +48,20 @@ function AddEmployee({ setEmployees }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Employee added:", data);
-        setEmployees((prevEmployees) => [...prevEmployees, data]); // Update the state with the new employee
+        if (id) {
+          console.log("Employee updated:", data);
+          setEmployees((prevEmployees) =>
+            prevEmployees.map((emp) => (emp.id === id ? data : emp))
+          );
+        } else {
+          console.log("Employee added:", data);
+          setEmployees((prevEmployees) => [...prevEmployees, data]);
+        }
         navigate(-1); // Navigate back to the previous page after submission
-        // Reset form after submission
-        /// setEmployee({ id: "", name: "", department: "", salary: "" });
       })
       .catch((error) => {
-        console.error("Error adding employee:", error);
+        console.error("Error submitting employee data:", error);
       });
-    console.log("Employee data submitted:", employee);
   };
 
   return (

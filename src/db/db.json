@@ -31,12 +31,6 @@
       "salary": "$110,000"
     },
     {
-      "id": "6",
-      "name": "kumar",
-      "department": "Engineering",
-      "salary": "$100,000"
-    },
-    {
       "id": "8",
       "name": "Michael Scott",
       "department": "Sales",
@@ -52,11 +46,11 @@
       "id": "9",
       "name": "sundar",
       "department": "FSE",
-      "salary": "$100,000"
+      "salary": "$200,000"
     },
     {
-      "id": "9",
-      "name": "sundar",
+      "id": "6",
+      "name": "Sundar",
       "department": "FSE",
       "salary": "$200,000"
     }
