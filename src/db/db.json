@@ -34,25 +34,7 @@
       "id": "8",
       "name": "Michael Scott",
       "department": "Sales",
-      "salary": "$85,000"
-    },
-    {
-      "id": "7",
-      "name": "sundar",
-      "department": "FSE",
-      "salary": "$100,000"
-    },
-    {
-      "id": "9",
-      "name": "sundar",
-      "department": "FSE",
-      "salary": "$200,000"
-    },
-    {
-      "id": "6",
-      "name": "Sundar",
-      "department": "FSE",
-      "salary": "$200,000"
+      "salary": "$86,000"
     }
   ],
   "departments": [

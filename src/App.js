@@ -9,6 +9,10 @@ import About from "./About";
 import StatusDisplay from "./StatusDisplay";
 import EmployeeDetails from "./EmployeeDetails";
 import AddEmployee from "./AddEmployee";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import notify from "./notification";
+import { deleteEmployee } from "./api";
 
 function App() {
   const { employees, isLoading, error, setEmployees } = useFetch(
@@ -16,25 +20,14 @@ function App() {
   );
 
   const FunctionDelete = (id) => {
-    fetch(`http://localhost:3001/employees/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to delete employee");
-        }
-        return response.json();
-      })
+    deleteEmployee(id)
       .then(() => {
-        console.log("Employee Deleted");
+        notify.success("Employee deleted successfully");
         const employeesList = employees.filter((emp) => emp.id !== id);
         setEmployees(employeesList);
       })
       .catch((error) => {
-        console.error("Error deleting employee:", error);
+        notify.error("Error deleting employee: " + error.message);
       });
   };
 
@@ -67,6 +60,7 @@ function App() {
           element={<AddEmployee setEmployees={setEmployees} />}
         />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

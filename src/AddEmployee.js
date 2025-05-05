@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import useFetch from "./useFetch"
+import useFetch from "./useFetch";
+import { addEmployee, updateEmployee } from "./api";
+import notify from "./notification"; // Import notify utility
 
 function AddEmployee({ setEmployees }) {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { employees} = useFetch(
+  const { employees } = useFetch(
     id ? `http://localhost:3001/employees/${id}` : null
   );
 
@@ -28,40 +30,29 @@ function AddEmployee({ setEmployees }) {
     setEmployee({ ...employee, [name]: value });
   };
 
-  const isIdEmpty = employee.id.trim() === ""; // Check if ID is empty
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = id
-      ? `http://localhost:3001/employees/${id}` // Update existing employee
-      : "http://localhost:3001/employees"; // Create new employee
+    try {
+      const data = id
+        ? await updateEmployee(id, employee)
+        : await addEmployee(employee);
 
-    const method = id ? "PUT" : "POST";
+      if (id) {
+        setEmployees((prevEmployees) =>
+          prevEmployees.map((emp) => (emp.id === id ? data : emp))
+        );
+        notify.success("Employee updated successfully");
+      } else {
+        setEmployees((prevEmployees) => [...prevEmployees, data]);
+        notify.success("Employee added successfully");
+      }
 
-    fetch(url, {
-      method: method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(employee),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (id) {
-          console.log("Employee updated:", data);
-          setEmployees((prevEmployees) =>
-            prevEmployees.map((emp) => (emp.id === id ? data : emp))
-          );
-        } else {
-          console.log("Employee added:", data);
-          setEmployees((prevEmployees) => [...prevEmployees, data]);
-        }
-        navigate(-1); // Navigate back to the previous page after submission
-      })
-      .catch((error) => {
-        console.error("Error submitting employee data:", error);
-      });
+      navigate(-1); // Navigate back to the previous page after submission
+    } catch (error) {
+      console.error("Error submitting employee data:", error);
+      notify.error("Error submitting employee data: " + error.message);
+    }
   };
 
   return (
@@ -80,6 +71,7 @@ function AddEmployee({ setEmployees }) {
             value={employee.id}
             onChange={handleChange}
             required
+            disabled={!!id} // Disable ID field if editing
           />
         </div>
         <div className="mb-3">
@@ -94,7 +86,6 @@ function AddEmployee({ setEmployees }) {
             value={employee.name}
             onChange={handleChange}
             required
-            disabled={isIdEmpty} // Disable if ID is empty
           />
         </div>
         <div className="mb-3">
@@ -109,7 +100,6 @@ function AddEmployee({ setEmployees }) {
             value={employee.department}
             onChange={handleChange}
             required
-            disabled={isIdEmpty} // Disable if ID is empty
           />
         </div>
         <div className="mb-3">
@@ -124,7 +114,6 @@ function AddEmployee({ setEmployees }) {
             value={employee.salary}
             onChange={handleChange}
             required
-            disabled={isIdEmpty} // Disable if ID is empty
           />
         </div>
         <button type="submit" className="btn btn-primary">
